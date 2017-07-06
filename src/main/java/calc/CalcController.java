@@ -17,7 +17,7 @@ public class CalcController {
                      @RequestParam(value="f", required=true) Float firstNum,
                      @RequestParam(value="s", required=false) Float secondNum
                      ) {
-        return new Calc(op, firstNum, secondNum);
+        return new Calc(OperationsEnum.find(op), firstNum, secondNum);
     }
 
     @ExceptionHandler(CalcException.class)

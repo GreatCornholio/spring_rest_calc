@@ -4,35 +4,32 @@ public class Calc {
 
     private final double content;
 
-    public Calc(String op, Float firstNum, Float secondNum) {
+    public Calc(OperationsEnum opEn, Float firstNum, Float secondNum) {
 
-        if (!(op.equals("add") || op.equals("sub") || op.equals("div") || op.equals("mul")|| op.equals("sqrt"))){
-            throw new CalcException("Only 'add', 'sub', 'div', 'mul', 'sqrt' operations availible");
-        }
-        if (!op.equals("sqrt") && secondNum == null){
+        if(opEn != OperationsEnum.SQRT && secondNum == null){
             throw new CalcException("Please give parameter 's'");
         }
 
-        switch (op){
-            case "add":
+        switch (opEn){
+            case ADD:
                 content = firstNum + secondNum;
                 break;
-            case "sub":
+            case SUB:
                 content = firstNum - secondNum;
                 break;
-            case "mul":
+            case MUL:
                 content = firstNum * secondNum;
                 break;
-            case "div":
+            case DIV:
                 if (secondNum != 0)
                     content = firstNum / secondNum;
                 else throw new CalcException("you can't devide by 0");
                 break;
-            case "sqrt":
+            case SQRT:
                 content = Math.sqrt(firstNum);
                 break;
             default:
-                throw new CalcException("unknown operation!");
+                throw new CalcException("unknown operation!"); // this problem solved in OperationsEnum. but extra sefety.
         }
     }
 
